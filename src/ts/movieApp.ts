@@ -53,7 +53,7 @@ export const createHtml = (movies: IMovie[], container: HTMLDivElement) => {
     container.appendChild(movie);
   }
 };
-//Visar ett tomt resultat om inga sökreusltat
+//Visar ett tomt resultat om inga sökresultat
 export const displayNoResult = (container: HTMLDivElement) => {
   let noMessage = document.createElement("p");
 
