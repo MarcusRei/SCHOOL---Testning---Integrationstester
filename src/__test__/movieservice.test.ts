@@ -3,14 +3,30 @@
  */
 
 import { IMovie } from "../ts/models/Movie";
-import { getMovies } from "../ts/services/__mocks__/movieservice";
+import { getData } from "../ts/services/movieservice";
+import { getMovies, mockData } from "../ts/services/__mocks__/movieservice";
 
-jest.mock("./../ts/services/movieservice.ts");
+jest.mock("axios", () => ({
+  get: async () => {
+    return new Promise((resolve) => {
+      resolve({
+        data: {
+          Search: mockData,
+        },
+      });
+    });
+  },
+}));
 
-test("should get mock data", async () => {
-  let movies: IMovie[] = await getMovies();
-  //Arrange
-  //Act
-  //Assert
-  expect(movies.length).toBeGreaterThan(0);
+//Klar
+describe("getData()", () => {
+  test("should get mock data", async () => {
+    //Arrange
+    let searchText: string = "Sök";
+    //Act
+    let response: IMovie[] = await getData(searchText);
+    //Assert
+    expect(response.length).toBe(2);
+    expect(response[0].Year).toBe("1994");
+  });
 });
