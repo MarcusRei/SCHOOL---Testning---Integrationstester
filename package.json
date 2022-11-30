@@ -18,5 +18,8 @@
     "coverageReporters": [
       "html"
     ]
+  },
+  "dependencies": {
+    "jest-environment-jsdom": "^29.3.1"
   }
 }

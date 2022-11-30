@@ -1,14 +1,16 @@
-import { IMovie } from "../ts/models/Movie";
-import {} from "module";
+/**
+ *@jest-environment jsdom
+ */
 
-let mockData: IMovie[] = [];
+import { IMovie } from "../ts/models/Movie";
+import { getMovies } from "../ts/services/__mocks__/movieservice";
 
 jest.mock("./../ts/services/movieservice.ts");
 
 test("should get mock data", async () => {
+  let movies: IMovie[] = await getMovies();
   //Arrange
   //Act
-  let result = await getData;
   //Assert
-  expect(result.length).toBe(10);
+  expect(movies.length).toBeGreaterThan(0);
 });
