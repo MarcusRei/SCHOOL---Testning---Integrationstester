@@ -4,7 +4,7 @@
 
 import { IMovie } from "../ts/models/Movie";
 import { getData } from "../ts/services/movieservice";
-import { getMovies, mockData } from "../ts/services/__mocks__/movieservice";
+import { mockData } from "../ts/services/__mocks__/movieservice";
 
 jest.mock("axios", () => ({
   get: async () => {

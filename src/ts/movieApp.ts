@@ -13,6 +13,7 @@ export const init = () => {
 };
 
 export async function handleSubmit() {
+  //searchText blir userinput
   let searchText = (document.getElementById("searchText") as HTMLInputElement)
     .value;
   //Tömmer movie-containern
@@ -20,16 +21,18 @@ export async function handleSubmit() {
     "movie-container"
   ) as HTMLDivElement;
   container.innerHTML = "";
-  //Ny grej??
-  try {
-    //Sätter datan i listan från tidigare med funktionen från services
-    movies = await getData(searchText);
 
+  try {
+    //Hämtar data med searchText
+    movies = await getData(searchText);
+    //om listan med filmer är större än noll kör createHtml
     if (movies.length > 0) {
       exports.createHtml(movies, container);
+      //Om listan är noll
     } else {
       exports.displayNoResult(container);
     }
+    //teknisk error
   } catch {
     exports.displayNoResult(container);
   }

@@ -7,7 +7,7 @@ import * as movieFunctions from "../ts/movieApp";
 import { mockData } from "../ts/services/__mocks__/movieservice";
 //Klar
 describe("displayNoResult()", () => {
-  test("should show change html", () => {
+  test("should show error message", () => {
     //Arrange
     document.body.innerHTML = `<div id="movie-container"></div>`;
     let container: HTMLDivElement = document.getElementById(
@@ -28,6 +28,7 @@ describe("createHtml()", () => {
   test("should create HTML", () => {
     //Arrange
     document.body.innerHTML = `<div id="movie-container"></div>`;
+
     let testMovies = mockData;
 
     let testContainer: HTMLDivElement = document.getElementById(
@@ -38,9 +39,9 @@ describe("createHtml()", () => {
     movieFunctions.createHtml(testMovies, testContainer);
 
     //Assert
-    expect(testContainer.innerHTML).toBe(
-      '<div class="movie"><h3>Movie 11</h3><img src="posterURL" alt="Movie 11"></div><div class="movie"><h3>Movie 2</h3><img src="posterURL" alt="Movie 2"></div>'
-    );
+    expect(document.querySelectorAll("div.movie").length).toBe(2);
+    expect(document.querySelectorAll("h3").length).toBe(2);
+    expect(document.querySelectorAll("img").length).toBe(2);
 
     document.body.innerHTML = "";
   });
@@ -48,22 +49,69 @@ describe("createHtml()", () => {
 
 //Inte klar
 describe("handleSubmit", () => {
-  /*  test("should do something", () => {
+  test("should call createHtml() if list contains more than zero", async () => {
     //Arrange
+    document.body.innerHTML = `<form id="searchForm">
+    <input type="text" value="star" id="searchText" placeholder="Skriv titel här" />
+    <button type="submit" id="search">Sök</button>
+  </form>
+  <div id="movie-container"></div>`;
+
+    let spy = jest.spyOn(movieFunctions, "createHtml").mockReturnValue();
+
     //Act
-    handleSubmit();
+    await movieFunctions.handleSubmit();
+
     //Assert
-    expect().toBe();
-  }); */
+    expect(spy).toHaveBeenCalled();
+
+    document.body.innerHTML = "";
+  });
+
+  test("should call displayNoResult() via catch", async () => {
+    //Arrange
+    document.body.innerHTML = `<form id="searchForm">
+    <input type="text" value="" id="searchText" placeholder="Skriv titel här" />
+    <button type="submit" id="search">Sök</button>
+  </form>
+  <div id="movie-container"></div>`;
+
+    let spy = jest.spyOn(movieFunctions, "displayNoResult").mockReturnValue();
+
+    //Act
+    await movieFunctions.handleSubmit();
+    //Assert
+    expect(spy).toHaveBeenCalled();
+    document.body.innerHTML = "";
+  });
+
+  test("should call displayNoResult() via ", async () => {
+    //Arrange
+    document.body.innerHTML = `<form id="searchForm">
+    <input type="text" value="" id="searchText" placeholder="Skriv titel här" />
+    <button type="submit" id="search">Sök</button>
+  </form>
+  <div id="movie-container"></div>`;
+
+    let spy = jest.spyOn(movieFunctions, "displayNoResult").mockReturnValue();
+
+    //Act
+    await movieFunctions.handleSubmit();
+    //Assert
+    expect(spy).toHaveBeenCalled();
+    document.body.innerHTML = "";
+  });
 });
 
 describe("init()", () => {
   test("should add submit eventlistener", () => {
     //Arrange
 
-    /* let testPromise = new Promise<void>((resolve, reject) => {}); */
-
-    let spy = jest.spyOn(movieFunctions, "handleSubmit").mockReturnThis();
+    let spy = jest.spyOn(movieFunctions, "handleSubmit").mockReturnValue(
+      new Promise<void>((resolve) => {
+        resolve();
+      })
+    );
 
     document.body.innerHTML = `
     <form id="searchForm">

@@ -1,6 +1,6 @@
 import { IMovie } from "../../models/Movie";
 
-export let mockData: IMovie[] = [
+export const mockData: IMovie[] = [
   {
     Title: "Movie 11",
     Year: "1994",
@@ -17,7 +17,7 @@ export let mockData: IMovie[] = [
   },
 ];
 
-export let reverseMockData: IMovie[] = [
+export const reverseMockData: IMovie[] = [
   {
     Title: "Star Wars",
     Year: "1994",
@@ -34,8 +34,9 @@ export let reverseMockData: IMovie[] = [
   },
 ];
 
-export async function getMovies(): Promise<IMovie[]> {
-  return new Promise((resolve) => {
-    resolve(mockData);
+export async function getData(searchText: string): Promise<IMovie[]> {
+  return new Promise((resolve, reject) => {
+    if (searchText) resolve(mockData);
+    else reject();
   });
 }
