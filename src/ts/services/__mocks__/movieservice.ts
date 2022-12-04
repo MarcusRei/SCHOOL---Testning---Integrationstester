@@ -2,14 +2,14 @@ import { IMovie } from "../../models/Movie";
 
 export const mockData: IMovie[] = [
   {
-    Title: "Movie 11",
+    Title: "A Movie",
     Year: "1994",
     imdbID: "1234",
     Poster: "posterURL",
     Type: "Action",
   },
   {
-    Title: "Movie 2",
+    Title: "B Movie",
     Year: "1996",
     imdbID: "1234",
     Poster: "posterURL",
@@ -17,7 +17,7 @@ export const mockData: IMovie[] = [
   },
 ];
 
-export const reverseMockData: IMovie[] = [
+export const longerMockData: IMovie[] = [
   {
     Title: "Star Wars",
     Year: "1994",
@@ -32,11 +32,65 @@ export const reverseMockData: IMovie[] = [
     Poster: "posterURL",
     Type: "comedy",
   },
+  {
+    Title: "Love Actually",
+    Year: "1994",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "Romantic Comedy",
+  },
+  {
+    Title: "Harry Potter",
+    Year: "1994",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "Adventure",
+  },
 ];
 
-export async function getData(searchText: string): Promise<IMovie[]> {
+export const doubleMockData: IMovie[] = [
+  {
+    Title: "Star Wars",
+    Year: "1994",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "Action",
+  },
+  {
+    Title: "Die Hard",
+    Year: "1996",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "comedy",
+  },
+  {
+    Title: "Die Hard",
+    Year: "1996",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "comedy",
+  },
+  {
+    Title: "Harry Potter",
+    Year: "1994",
+    imdbID: "1234",
+    Poster: "posterURL",
+    Type: "Adventure",
+  },
+];
+
+export const fakeMockData: IMovie[] = [];
+
+export const getData = async (searchText: string): Promise<IMovie[]> => {
   return new Promise((resolve, reject) => {
-    if (searchText) resolve(mockData);
-    else reject();
+    if (searchText !== "") {
+      if (searchText !== "search not") {
+        resolve(mockData);
+      } else {
+        resolve([]);
+      }
+    } else {
+      reject();
+    }
   });
-}
+};
