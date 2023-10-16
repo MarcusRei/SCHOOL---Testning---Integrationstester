@@ -1,4 +1,4 @@
-# 🧪 Inlämningsuppgift 2 Testning - Integrationstester
+# 🧪 Inlämningsuppgift 2 - Integrationstester
 Utbildning: **Frontend developer på medieinstitutet**
 
 Kurs: **Testning**
