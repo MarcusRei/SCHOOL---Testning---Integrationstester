@@ -1,9 +1,11 @@
 # 🧪 Inlämningsuppgift 2 Testning - Integrationstester
+Utbildning: **Frontend developer på medieinstitutet**
 
-## Uppgiftens syfte
+Kurs: **Testning**
 
-I denna uppgift var målet att skriva tester som testar så många funktioner som möjligt.
-main.ts är exkluderad från detta.
+## 🧰 Techstack
+- Jest
+- TypeScript
 
 ## Lärarens direktiv
 
