@@ -4,8 +4,8 @@ Utbildning: **Frontend developer på medieinstitutet**
 Kurs: **Testning**
 
 ## 🧰 Techstack
-- Jest
-- TypeScript
+- **Jest**
+- **TypeScript**
 
 ## Lärarens direktiv
 
